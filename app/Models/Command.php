@@ -9,7 +9,7 @@ class Command extends Model
 {
     use HasFactory;
     protected $table = 'command';
-    protected $fillable = ['quantite', 'id_user', 'id_product', 'id_status'];
+    protected $fillable = ['quantite', 'id_user', 'id_product', 'id_status', 'id_delivery_address'];
 
     public function product()
     {
@@ -29,6 +29,11 @@ class Command extends Model
     public function delivery()
     {
         return $this->hasMany(Delivery::class, 'id_command');
+    }
+
+    public function deliveryAddress()
+    {
+        return $this->belongsTo(DeliveryAddress::class, 'id_delivery_address');
     }
 
 }

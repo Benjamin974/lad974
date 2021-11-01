@@ -19,7 +19,7 @@ class CreateCompanyTable extends Migration
             $table->string('address');
             $table->string('city');
             $table->bigInteger('id_user')->unsigned();
-            $table->foreign('id_user')->references('id')->on('user');
+            $table->foreign('id_user')->references('id')->on('users');
             $table->timestamps();
         });
     }

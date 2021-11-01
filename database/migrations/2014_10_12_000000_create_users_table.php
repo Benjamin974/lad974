@@ -18,7 +18,7 @@ class CreateUsersTable extends Migration
             $table->string('role');
         });
 
-        Schema::create('user', function (Blueprint $table) {
+        Schema::create('users', function (Blueprint $table) {
             $table->id();
             $table->string('name');
             $table->string('email')->unique();
@@ -28,6 +28,15 @@ class CreateUsersTable extends Migration
             $table->foreign('id_role')->references('id')->on('role');
             $table->rememberToken();
             $table->timestamps();
+        });
+
+        Schema::create('delivery_address', function (Blueprint $table) {
+            $table->id();
+            $table->string('address');
+            $table->integer('postal_code');
+            $table->integer('phone_number');
+            $table->bigInteger('id_user')->unsigned();
+            $table->foreign('id_user')->references('id')->on('users');
         });
     }
 
@@ -39,7 +48,8 @@ class CreateUsersTable extends Migration
     public function down()
     {
         Schema::disableForeignKeyConstraints();
-        Schema::dropIfExists('user');
+        Schema::dropIfExists('delivery_address');
+        Schema::dropIfExists('users');
         Schema::dropIfExists('role');
         Schema::enableForeignKeyConstraints();
     }

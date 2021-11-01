@@ -26,7 +26,9 @@ class CreateCommandTable extends Migration
             $table->bigInteger('id_product')->unsigned();
             $table->foreign('id_product')->references('id')->on('product');
             $table->bigInteger('id_user')->unsigned();
-            $table->foreign('id_user')->references('id')->on('user');
+            $table->foreign('id_user')->references('id')->on('users');
+            $table->bigInteger('id_delivery_address')->unsigned();
+            $table->foreign('id_delivery_address')->references('id')->on('delivery_address');
             $table->timestamps();
         });
     }
