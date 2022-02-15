@@ -1,9 +1,5 @@
 <template>
-	<v-menu
-		offset-y
-		open-on-hover
-		:close-on-content-click="false"
-	>
+	<v-menu offset-y open-on-hover :close-on-content-click="false">
 		<template v-slot:activator="{ on }">
 			<v-btn v-on="on" text color="success">
 				<v-badge color="success" :content="quantite" :value="quantite">
@@ -17,14 +13,14 @@
 					to="/basket"
 					v-if="quantite > 0"
 					class="white--text mb-6"
-					color="#ff6d6d"
+					color="#2F53B9"
 					>voir le panier</v-btn
 				>
 				<v-list-item v-for="(product, index) in itemBasket" :key="index">
 					<v-list-item-title>
 						<v-card>
 							<div class="cardBasket">
-								<v-card-title>
+								<v-card-title style="background-color: white; border-radius: 3px" class="mb-3">
 									<v-img
 										:src="product.picture"
 										height="100px"
@@ -59,7 +55,7 @@
 <script src="./basket" />
 <style lang="scss">
 .cardBasket {
-	background-color: #ff6d6d;
+	background-color: #2f53b9;
 	color: white;
 	border-radius: 5px;
 	padding: 10px;
