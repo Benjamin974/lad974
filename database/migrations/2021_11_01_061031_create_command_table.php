@@ -18,17 +18,31 @@ class CreateCommandTable extends Migration
             $table->string('status');
         });
 
+        Schema::create('address', function (Blueprint $table) {
+            $table->id();
+            $table->string('address');
+            $table->string('name');
+            $table->string('pays');
+            $table->string('postal_code');
+            $table->string('ville');
+            $table->bigInteger('id_user')->unsigned();
+            $table->foreign('id_user')->references('id')->on('users');
+            $table->timestamps();
+
+        });
+
+
         Schema::create('command', function (Blueprint $table) {
             $table->id();
-            $table->string('quantite');
+            $table->integer('price');
             $table->bigInteger('id_status')->unsigned();
             $table->foreign('id_status')->references('id')->on('status_command');
-            $table->bigInteger('id_product')->unsigned();
-            $table->foreign('id_product')->references('id')->on('product');
             $table->bigInteger('id_user')->unsigned();
             $table->foreign('id_user')->references('id')->on('users');
             $table->bigInteger('id_delivery_address')->unsigned();
-            $table->foreign('id_delivery_address')->references('id')->on('delivery_address');
+            $table->foreign('id_delivery_address')->references('id')->on('address');
+            $table->bigInteger('id_facturation_address')->unsigned();
+            $table->foreign('id_facturation_address')->references('id')->on('address');
             $table->timestamps();
         });
     }
@@ -42,8 +56,8 @@ class CreateCommandTable extends Migration
     {
         Schema::disableForeignKeyConstraints();
         Schema::dropIfExists('command');
+        Schema::dropIfExists('address');
         Schema::dropIfExists('status_command');
         Schema::enableForeignKeyConstraints();
-
     }
 }

@@ -19,6 +19,7 @@ class CreateProductTable extends Migration
             $table->string('description');
             $table->integer('price');
             $table->integer('quantite');
+            $table->string('picture');
             $table->bigInteger('id_company')->unsigned();
             $table->foreign('id_company')->references('id')->on('company');
             $table->timestamps();

@@ -2,6 +2,7 @@
 
 namespace Database\Seeders;
 
+use App\Utils\CompanyUtils;
 use Illuminate\Database\Seeder;
 
 class DatabaseSeeder extends Seeder
@@ -16,9 +17,8 @@ class DatabaseSeeder extends Seeder
         $this->call([
             RoleSeeder::class,
             UserSeeder::class,
-            DeliveryAddressSeeder::class,
             CompanySeeder::class,
-            DeliveryManSeeder::class,
+            RatingSeeder::class,
             ProductSeeder::class,
             CommandSeeder::class,
             StatusCommandSeeder::class,
@@ -26,5 +26,7 @@ class DatabaseSeeder extends Seeder
             StatusDeliverySeeder::class,
             // DeliverySeeder::class
         ]);
+
+        CompanyUtils::addCompaniesNote();
     }
 }

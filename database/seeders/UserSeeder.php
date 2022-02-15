@@ -20,7 +20,8 @@ class UserSeeder extends Seeder
                 'name' => 'benjamin',
                 'email' => 'admin@gmail.com',
                 'password' => bcrypt('password'),
-                'id_role' => 3,
+                'id_role' => 4,
+                'banned_until' => false,
             ],
             [
                 'id' => 2,
@@ -28,6 +29,7 @@ class UserSeeder extends Seeder
                 'email' => 'client@gmail.com',
                 'password' => bcrypt('password'),
                 'id_role' => 1,
+                'banned_until' => false,
             ],
             [
                 'id' => 3,
@@ -35,6 +37,15 @@ class UserSeeder extends Seeder
                 'email' => 'company@gmail.com',
                 'password' => bcrypt('password'),
                 'id_role' => 2,
+                'banned_until' => false,
+            ],
+            [
+                'id' => 4,
+                'name' => 'Alphonso Gambert',
+                'email' => 'deliveryman@gmail.com',
+                'password' => bcrypt('password'),
+                'id_role' => 3,
+                'banned_until' => false,
             ],
 
         ];

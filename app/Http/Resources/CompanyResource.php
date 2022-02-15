@@ -15,13 +15,17 @@ class CompanyResource extends JsonResource
     public function toArray($request)
     {
         $user = new UserResource($this->user);
-
+        $products = ProductResource::collection($this->products);
         return [
             'id' => $this->id,
             'name' => $this->name,
             'address' => $this->address,
             'city' => $this->city,
+            'note' => $this->note,
+            'picture' => $this->picture,
+            'secteur' => $this->secteur,
             'user' => $user,
+            'products' => $products
         ];
     }
 }

@@ -27,7 +27,6 @@ class UserResource extends JsonResource
                 'id' => $this->id,
                 'name' => $this->name,
                 'email' => $this->email,
-                'password' => $this->password,
                 'token' => $this->token,
                 'role' => $role,
             ];
@@ -38,7 +37,6 @@ class UserResource extends JsonResource
                 'id' => $this->id,
                 'name' => $this->name,
                 'email' => $this->email,
-                'password' => $this->password,
                 'role' => $role,
             ];
         }

@@ -21,6 +21,7 @@ class ProductSeeder extends Seeder
                 'description' => 'Bouteille de vin rouge',
                 'price' => 10,
                 'quantite' => 30,
+                'picture' => '/storage/images/redwin.jpg',
                 'id_company' => 1,
             ],
             [
@@ -29,6 +30,7 @@ class ProductSeeder extends Seeder
                 'description' => 'Console de jeu vidéo',
                 'price' => 300,
                 'quantite' => 30,
+                'picture' => '/storage/images/switch.png',
                 'id_company' => 1,
             ],
             [
@@ -37,6 +39,7 @@ class ProductSeeder extends Seeder
                 'description' => 'Haltère permettant de se musclé en exécutant certains mouvements',
                 'price' => 300,
                 'quantite' => 30,
+                'picture' => '/storage/images/haltere.jpg',
                 'id_company' => 1,
             ],
             [
@@ -45,6 +48,7 @@ class ProductSeeder extends Seeder
                 'description' => 'Bouteille de vin rouge',
                 'price' => 10,
                 'quantite' => 30,
+                'picture' => '/storage/images/redwin.jpg',
                 'id_company' => 1,
             ],
             [
@@ -53,6 +57,7 @@ class ProductSeeder extends Seeder
                 'description' => 'Console de jeu vidéo',
                 'price' => 300,
                 'quantite' => 30,
+                'picture' => '/storage/images/switch.png',
                 'id_company' => 1,
             ],
             [
@@ -61,6 +66,7 @@ class ProductSeeder extends Seeder
                 'description' => 'Haltère permettant de se musclé en exécutant certains mouvements',
                 'price' => 300,
                 'quantite' => 30,
+                'picture' => '/storage/images/haltere.jpg',
                 'id_company' => 1,
             ],
             [
@@ -69,6 +75,7 @@ class ProductSeeder extends Seeder
                 'description' => 'Bouteille de vin rouge',
                 'price' => 10,
                 'quantite' => 30,
+                'picture' => '/storage/images/redwin.jpg',
                 'id_company' => 1,
             ],
             [
@@ -77,6 +84,7 @@ class ProductSeeder extends Seeder
                 'description' => 'Console de jeu vidéo',
                 'price' => 300,
                 'quantite' => 30,
+                'picture' => '/storage/images/switch.png',
                 'id_company' => 1,
             ],
             [
@@ -85,6 +93,7 @@ class ProductSeeder extends Seeder
                 'description' => 'Haltère permettant de se musclé en exécutant certains mouvements',
                 'price' => 300,
                 'quantite' => 30,
+                'picture' => '/storage/images/haltere.jpg',
                 'id_company' => 1,
             ]
         ];

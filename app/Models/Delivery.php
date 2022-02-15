@@ -18,7 +18,7 @@ class Delivery extends Model
 
     public function deliveryMan()
     {
-        return $this->belongsTo(DeliveryMan::class, 'id_delivery_man');
+        return $this->belongsTo(User::class, 'id_delivery_man');
     }
 
     public function status()

@@ -9,8 +9,12 @@ class Company extends Model
 {
     use HasFactory;
     protected $table = 'company';
-    protected $fillable = ['name', 'address', 'city', 'id_user'];
+    protected $fillable = ['name', 'address', 'city', 'note', 'picture', 'secteur', 'id_user'];
 
+    public function products()
+    {
+        return $this->hasMany(Product::class, 'id_company');
+    }
     public function user()
     {
         return $this->belongsTo(User::class, 'id_user');

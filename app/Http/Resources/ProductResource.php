@@ -14,15 +14,16 @@ class ProductResource extends JsonResource
      */
     public function toArray($request)
     {
-        $company = new CompanyResource($this->company);
+        // $company = new CompanyResource($this->company);
 
         return [
             'id' => $this->id,
             'name' => $this->name,
-            'descirpiton' => $this->description,
+            'description' => $this->description,
             'price' => $this->price,
             'quantite' => $this->quantite,
-            'company' => $company,
+            'picture' => $this->picture,
+            'company' => $this->company_id,
         ];
     }
 }

@@ -20,7 +20,7 @@ class CreateDeliveryTable extends Migration
         Schema::create('delivery', function (Blueprint $table) {
             $table->id();
             $table->bigInteger('id_delivery_man')->unsigned();
-            $table->foreign('id_delivery_man')->references('id')->on('delivery_man');
+            $table->foreign('id_delivery_man')->references('id')->on('users');
             $table->bigInteger('id_command')->unsigned();
             $table->foreign('id_command')->references('id')->on('command');
             $table->bigInteger('id_status')->unsigned();

@@ -9,21 +9,21 @@ class Command extends Model
 {
     use HasFactory;
     protected $table = 'command';
-    protected $fillable = ['quantite', 'id_user', 'id_product', 'id_status', 'id_delivery_address'];
+    protected $fillable = ['id_status', 'id_user', 'id_delivery_address', 'id_facturation_address', 'price'];
 
-    public function product()
+    function commandHasProducts()
     {
-        return $this->belongsTo(Product::class, 'id_product');
-    }
-
-    public function user()
-    {
-        return $this->belongsTo(User::class, 'id_user');
+        return $this->belongsToMany('App\Models\Product', 'command_has_products', 'id_command', 'id_product');
     }
 
     public function status()
     {
         return $this->belongsTo(StatusCommand::class, 'id_status');
+    }
+
+    public function user()
+    {
+        return $this->belongsTo(User::class, 'id_user');
     }
 
     public function delivery()
@@ -33,7 +33,12 @@ class Command extends Model
 
     public function deliveryAddress()
     {
-        return $this->belongsTo(DeliveryAddress::class, 'id_delivery_address');
+        return $this->belongsTo(UserAddress::class, 'id_delivery_address');
+    }
+
+    public function facturationAddress()
+    {
+        return $this->belongsTo(UserAddress::class, 'id_facturation_address');
     }
 
 }

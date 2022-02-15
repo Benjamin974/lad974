@@ -14,7 +14,7 @@ class DeliveryResource extends JsonResource
      */
     public function toArray($request)
     {
-        $deliveryMan = new DeliveryManResource($this->deliveryMan);
+        $deliveryMan = new UserResource($this->deliveryMan);
         $command = new CommandResource($this->command);
         $status = new StatusResource($this->status);
         

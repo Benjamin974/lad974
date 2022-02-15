@@ -15,16 +15,16 @@ class CommandResource extends JsonResource
     public function toArray($request)
     {
         $user = new UserResource($this->user);
-        $product = new ProductResource($this->product);
         $status = new StatusResource($this->status);
-        $deliveryAddress = new DeliveryAddressResource($this->deliveryAddress);
+        $deliveryAddress = new AddressResource($this->deliveryAddress);
+        $facturationAddress = new AddressResource($this->facturationAddress);
         
         return [
             'id' => $this->id,
-            'quantite' => $this->quantite,
+            'status' => $status,
             'user' => $user,
-            'product' => $product,
-            'deliveryAddress' => $deliveryAddress
+            'deliveryAddress' => $deliveryAddress,
+            'facturationAddress' => $facturationAddress
         ];
     }
 }

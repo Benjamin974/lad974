@@ -13,7 +13,7 @@ class CreateUsersTable extends Migration
      */
     public function up()
     {
-        Schema::create('role', function (Blueprint $table) {
+        Schema::create('roles', function (Blueprint $table) {
             $table->id();
             $table->string('role');
         });
@@ -21,22 +21,16 @@ class CreateUsersTable extends Migration
         Schema::create('users', function (Blueprint $table) {
             $table->id();
             $table->string('name');
+            $table->string('time')->nullable();
+            $table->string('login_fails')->nullable();
             $table->string('email')->unique();
             $table->timestamp('email_verified_at')->nullable();
             $table->string('password');
             $table->bigInteger('id_role')->unsigned();
-            $table->foreign('id_role')->references('id')->on('role');
+            $table->foreign('id_role')->references('id')->on('roles');
+            $table->boolean('banned_until');
             $table->rememberToken();
             $table->timestamps();
-        });
-
-        Schema::create('delivery_address', function (Blueprint $table) {
-            $table->id();
-            $table->string('address');
-            $table->integer('postal_code');
-            $table->integer('phone_number');
-            $table->bigInteger('id_user')->unsigned();
-            $table->foreign('id_user')->references('id')->on('users');
         });
     }
 
@@ -48,9 +42,8 @@ class CreateUsersTable extends Migration
     public function down()
     {
         Schema::disableForeignKeyConstraints();
-        Schema::dropIfExists('delivery_address');
         Schema::dropIfExists('users');
-        Schema::dropIfExists('role');
+        Schema::dropIfExists('roles');
         Schema::enableForeignKeyConstraints();
     }
 }

@@ -18,9 +18,19 @@ class CreateCompanyTable extends Migration
             $table->string('name');
             $table->string('address');
             $table->string('city');
+            $table->integer('note')->nullable();
+            $table->string('picture');
+            $table->string('secteur')->nullable();
             $table->bigInteger('id_user')->unsigned();
             $table->foreign('id_user')->references('id')->on('users');
             $table->timestamps();
+        });
+
+        Schema::create('rating', function (Blueprint $table) {
+            $table->id();
+            $table->string('note');
+            $table->bigInteger('id_company')->unsigned();
+            $table->foreign('id_company')->references('id')->on('company');
         });
     }
 
@@ -33,7 +43,7 @@ class CreateCompanyTable extends Migration
     {
         Schema::disableForeignKeyConstraints();
         Schema::dropIfExists('company');
+        Schema::dropIfExists('rating');
         Schema::enableForeignKeyConstraints();
-        
     }
 }

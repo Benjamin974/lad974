@@ -4,14 +4,14 @@ namespace App\Http\Controllers;
 
 use App\Http\Resources\ProductResource;
 use App\Models\Product;
+use App\Utils\ProductUtils;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Validator;
 
 class ProductController extends Controller
 {
-    public function get()
+    public function getAll($id)
     {
-        $products = Product::paginate(9);
+        $products = Product::where('id_company', $id)->paginate(9);
         return ProductResource::collection($products);
     }
 
@@ -23,7 +23,7 @@ class ProductController extends Controller
 
     public function addUpdate(Request $request)
     {
-        $validator = $this->validateProduct($request);
+        $validator = ProductUtils::validateProduct($request);
         $product = '';
 
         if (isset($validator['id'])) {
@@ -32,7 +32,7 @@ class ProductController extends Controller
             $product = new Product;
         }
 
-        $product = $this->changeProductBdd($product, $validator);
+        $product = ProductUtils::changeProductBdd($product, $validator);
         $product->save();
 
         return new ProductResource($product);
@@ -54,32 +54,5 @@ class ProductController extends Controller
                 'errorList'   => 'un problème est survenu dans la suppression',
             ], 422);
         }
-    }
-
-    private function validateProduct($req)
-    {
-        return Validator::make(
-            $req->all(),
-            [
-                'id' => '',
-                'name' => 'required',
-                'price' => 'required',
-                'quantite' => 'required',
-                'id_company' => 'required'
-            ],
-            [
-                'required' => 'Le champs :attribute est requis', // :attribute renvoie le champs / l'id de l'element en erreure
-            ]
-        )->validate();
-    }
-
-    private function changeProductBdd($product, $validator)
-    {
-        $product->name = $validator['name'];
-        $product->price = $validator['price'];
-        $product->quantite = $validator['quantite'];
-        $product->id_company = $validator['id_company'];
-
-        return $product;
     }
 }
