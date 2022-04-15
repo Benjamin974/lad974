@@ -3,11 +3,12 @@ import { basketServices } from '../../_services/basketServices';
 
 //@ts-ignore
 import { VStripeCard } from 'v-stripe-elements/lib'
-
+import router from '../../routes'
 //@ts-ignore
 import _ from 'lodash'
 import { apiService } from '../../_services/apiService';
 import axios from 'axios';
+import { authenticationService } from '../../_services/authenticationService';
 export default {
   components: {
     VStripeCard
@@ -51,6 +52,7 @@ export default {
       currentUser: null,
       lazy: false,
       valid: true,
+      from: null,
       rulesCP: (v: any) => {
         if (!v.trim()) return true;
         if (!isNaN(parseFloat(v)) && v >= 0 && v <= 99999) return true;
@@ -59,9 +61,25 @@ export default {
 
     }
   },
+
+  computed: {
+    isChecked(): any {
+      let self: any = this;
+      return self.currentUser;
+    },
+  },
+
+  beforeRouteEnter(to: any, from: any, next: any) {
+    next((vm: any) => {
+      from.fullPath == '/login' ? vm.e1 = 2 : null;
+    });
+  },
+
   created() {
     let self: any = this;
+    authenticationService.currentUser.subscribe((x) => (self.currentUser = x));
     self.getBasket();
+
 
   },
   mounted() {
@@ -89,7 +107,7 @@ export default {
       let self: any = this;
 
       if (confirm('Voulez annuler la commande ?')) {
-        self.$router.push('/basket')
+        self.$router.back();
       }
 
     },
@@ -97,22 +115,22 @@ export default {
     commander() {
       let self: any = this;
       let price: number = 0;
-      if (!self.selectable) {
-        _.assign(self.commande.facturation, self.commande.livraison)
+      if (self.isChecked) {
+        if (!self.selectable) {
+          _.assign(self.commande.facturation, self.commande.livraison)
+        }
+        for (const property in self.commande.commandList) {
+          price += (self.commande.commandList[property].price * self.commande.commandList[property].quantite);
+        }
+        self.commande.price = price;
+        self.e1 = 3
+        apiService.post('/api/command/take-command', self.commande).then(({ data }) => {
+          self.idCommande = data.id;
+        })
+      } else {
+        EventBus.$emit('updateSnack', { etat: true, text: 'connectez-vous pour pouvoir commander', color: 'error' })
+        router.push('/login');
       }
-      for (const property in self.commande.commandList) {
-
-        price += (self.commande.commandList[property].price * self.commande.commandList[property].quantite);
-      }
-      self.commande.price = price;
-      self.e1 = 3
-      apiService.post('/api/command/take-command', self.commande).then(({ data }) => {
-        self.idCommande = data.id;
-      })
-      let itemBasket: any = [];
-      let quantite = 0;
-      basketServices.delBasket();
-
     },
 
     async getFacture() {
@@ -139,7 +157,6 @@ export default {
       apiService.post('/api/command/' + self.idCommande + '/paiement', {
         id: self.source.id
       }).then(response => {
-        console.log(response.data.status.order_status)
         self.snackbar = true;
         self.text = "Votre commande à bien été effectué";
         EventBus.$emit('clear', "Votre commande à bien été effectué")
@@ -147,6 +164,10 @@ export default {
         basketServices.delBasket();
         self.e1 = 4
 
+      }).catch(error => {
+        apiService.post('/api/command/delete/' + self.idCommande ).then(data => {
+          console.log(data);
+        })
       })
     },
 

@@ -20,7 +20,8 @@ export default {
       valid: true,
       loading: false,
       returnUrl: "",
-      erreur: ''
+      erreur: '',
+      from: null
     };
   },
   created() {
@@ -32,6 +33,15 @@ export default {
 
     self.returnUrl = self.$route.query.returnUrl || "/";
   },
+
+  beforeRouteEnter(to: any, from: any, next: any) {
+    next((vm: any) => {
+      setTimeout(() => {
+        vm.from = from
+      }, 1000)
+    });
+  },
+
   methods: {
     connection() {
       let self: any = this;
@@ -52,7 +62,7 @@ export default {
                 self.erreur = 'trop de tentative, vous pourrez reessayer dans 1 heure'
               } else if (_.isObject(user)) {
                 self.erreur = '';
-                self.$router.push(self.returnUrl);
+                self.from.fullPath == '/step-command' ? self.$router.push(self.from.fullPath) : self.$router.back();
                 break
               }
 

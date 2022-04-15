@@ -11,7 +11,7 @@
 			<router-view></router-view>
 			<baseSnackbar />
 		</div>
-		<div class="footer" style="position: absolute; bottom: 0; width: 100%;">
+		<div class="footer" style="position: absolute; bottom: 0; width: 100%">
 			<footerLayout />
 		</div>
 	</v-app>
@@ -25,10 +25,14 @@ export default {
 	components: {
 		BaseSnackbar,
 		Navbar,
-		FooterLayout
+		FooterLayout,
 	},
 };
 </script>
 
 <style lang="scss">
+@import url('https://fonts.googleapis.com/css2?family=Josefin+Sans:wght@300;400&display=swap');
+.v-application--wrap {
+	font-family: 'Josefin Sans', sans-serif !important;
+}
 </style>

@@ -19,7 +19,7 @@
 			>
 				S'inscrire
 			</v-btn>
-			<Basket v-if="isChecked" />
+			<Basket />
 			<v-btn
 				text
 				to="/login"

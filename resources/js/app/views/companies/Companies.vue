@@ -3,12 +3,19 @@
 		<v-container class="mt-10">
 			<v-row class="d-flex justify-center" no-gutters>
 				<v-col v-for="(company, key) in companies" :key="key" cols="4">
-					<v-card class="mx-auto my-12" max-width="374" :hover="true" @click="goCompany(company.id)">
+					<v-card
+						class="mx-auto my-12"
+						max-width="374"
+						:hover="true"
+						@click="goCompany(company.id)"
+					>
 						<v-img height="250" :src="company.picture"></v-img>
 
-						<v-card-title>{{ company.name }}</v-card-title>
+						<v-card-title
+							><h3>{{ company.name }}</h3></v-card-title
+						>
 
-						<v-card-text v-if="company.note != null">
+						<v-card-text>
 							<v-row align="center" class="mx-0">
 								<v-rating
 									:value="company.note"

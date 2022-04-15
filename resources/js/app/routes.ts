@@ -14,9 +14,6 @@ import Company from './views/company/Company.vue';
 import StepCommand from './views/stepCommand/StepCommand.vue';
 
 //@ts-ignore
-import Basket from './views/basket/Basket.vue';
-
-//@ts-ignore
 import CompanyDashboard from './views/dashboards/company/Articles.vue';
 
 //@ts-ignore
@@ -24,6 +21,9 @@ import Login from './auth/Login.vue';
 
 //@ts-ignore
 import Register from './auth/Register.vue';
+
+//@ts-ignore
+import Test from './views/test/Test.vue';
 
 //@ts-ignore
 import _ from 'lodash'
@@ -54,10 +54,9 @@ const routes = new VueRouter({
 
         },
         {
-            path: '/basket',
-            name: 'basket',
-            component: Basket,
-            meta: { authorize: [] }
+            path: '/test',
+            name: 'test',
+            component: Test,
 
         },
         {

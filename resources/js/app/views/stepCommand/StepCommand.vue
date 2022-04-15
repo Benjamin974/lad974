@@ -17,7 +17,7 @@
 				<v-stepper-step step="3">Voir la facture</v-stepper-step>
 			</v-stepper-header>
 
-			<v-stepper-items>
+			<v-stepper-items style="margin: 10vh 0 !important">
 				<v-stepper-content step="1">
 					<v-row>
 						<v-col
@@ -55,7 +55,7 @@
 							</v-card>
 						</v-col>
 					</v-row>
-					<div class="d-flex justify-space-between" style="width: 100%">
+					<div class="d-flex justify-space-between" style="width: 100%; margin: 10vh 0 !important">
 						<v-btn text @click="cancel" color="error">retour</v-btn>
 
 						<v-btn color="#2f53b9" class="white--text" @click="e1 = 2"
@@ -68,7 +68,7 @@
 					<v-container>
 						<v-form ref="form" v-model="valid" :lazy-validation="lazy">
 							<div>
-								<h3>Adresse de livraison</h3>
+								<h3 class="mb-5">Adresse de livraison</h3>
 								<v-row>
 									<v-text-field
 										v-model="commande.livraison.name"
@@ -115,7 +115,10 @@
 									></v-text-field>
 								</v-row>
 							</div>
-							<v-switch v-model="selectable" label="Adresse de facturation différente ?"></v-switch>
+							<v-switch
+								v-model="selectable"
+								label="Adresse de facturation différente ?"
+							></v-switch>
 							<div v-if="selectable">
 								<h3>Adresse de facturation</h3>
 								<v-row>
@@ -169,7 +172,7 @@
 						</v-form>
 					</v-container>
 
-					<div class="d-flex justify-space-between" style="width: 100%">
+					<div class="d-flex justify-space-between" style="width: 100%; margin: 10vh 0 !important">
 						<v-btn text color="error">retour</v-btn>
 
 						<v-btn
@@ -183,7 +186,11 @@
 				</v-stepper-content>
 				<v-stepper-content step="3">
 					<v-stripe-card v-model="source" :api-key="api_key"></v-stripe-card>
-					<v-btn color="primary" class="mt-10" @click="process" :disabled="!source"
+					<v-btn
+						color="primary"
+						class="mt-10"
+						@click="process"
+						:disabled="!source"
 						>Payer</v-btn
 					>
 				</v-stepper-content>

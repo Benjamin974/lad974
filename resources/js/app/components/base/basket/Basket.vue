@@ -10,7 +10,7 @@
 		<div style="max-height: 400px; overflow: auto">
 			<v-list class="d-flex align-center flex-column mt-2">
 				<v-btn
-					to="/basket"
+					to="/step-command"
 					v-if="quantite > 0"
 					class="white--text mb-6"
 					color="#2F53B9"

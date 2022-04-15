@@ -6,12 +6,13 @@ use App\Http\Resources\DeliveryResource;
 use App\Models\Delivery;
 use App\Utils\DeliveryUtils;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Validator;
 
 class DeliveryController extends Controller
 {
-    public function getAll()
+    public function get($id)
     {
-        $deliveries = Delivery::get();
+        $deliveries = Delivery::where('id_delivery_man', $id)->get();
         return DeliveryResource::collection($deliveries);
     }
 
@@ -43,5 +44,27 @@ class DeliveryController extends Controller
                 'errorList'   => 'un problème est survenu dans la suppression',
             ], 422);
         }
+    }
+
+    public function addDeliveryToDeliveryMan() {
+        $validator = Validator::make(
+            $request->all(),
+            [
+                'id_delivery_man' => 'required',
+                'id_command' => 'required',
+            ],
+            [
+                'required' => 'Le champs :attribute est requis', // :attribute renvoie le champs / l'id de l'element en erreure
+            ]
+        )->validate();
+
+        $delivery = new Delivery();
+        $delivery->id_delivery_man = $validator['id_delivery_man'];
+        $delivery->id_command = $validator['id_command'];
+        $delivery->id_status = 1;
+        $delivery->save(); 
+
+        return new DeliveryResource($delivery);
+
     }
 }

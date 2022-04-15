@@ -20,7 +20,7 @@
 					</v-card-text>
 				</v-card>
 			</template>
-			<v-card class="d-flex justify-space-around">
+			<v-card class="d-flex justify-space-around dialog-product">
 				<div class="img">
 					<v-img :src="product.picture" height="100%"></v-img>
 				</div>
@@ -74,6 +74,12 @@
 		color: white;
 		font-size: 1rem;
 		padding: 0 10px;
+	}
+}
+
+@media (max-width: 700px) {
+	.dialog-product {
+		background-color: red;
 	}
 }
 </style>

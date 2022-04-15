@@ -58,6 +58,7 @@ Route::prefix('delivery')->group(function () {
 
 Route::prefix('command')->group(function () {
     Route::get('/get/{id}', [CommandController::class, 'getAll'])->where('id', '[0-9]+'); //Liste des livraisons par livreur (id_delivery_man)
+    Route::get('/user/{id}', [CommandController::class, 'getAllWithUser'])->where('id', '[0-9]+'); //Liste des livraisons par livreur (id_delivery_man)
     Route::post('/take-command', [CommandController::class, 'command']);
     Route::post('/add', [CommandController::class, 'add']);
     Route::post('/delete/{id}', [CommandController::class, 'delete'])->where('id', '[0-9]+');

@@ -5,10 +5,18 @@
 		</v-container>
 		<v-container class="mt-10">
 			<v-row class="d-flex justify-center" no-gutters>
-				<v-col v-for="(product, key) in products" :key="key" lg="4" md="6" sm="12">
+				<v-col
+					v-for="(product, key) in products"
+					:key="key"
+					lg="3"
+					md="6"
+					sm="12"
+				>
 					<CardProduct :product="product" />
 				</v-col>
-				<h1 v-if="products.length == 0" style="color:gray"> IL N'Y A PAS D'ARTICLE DANS CE MAGASIN</h1>
+				<h1 v-if="products.length == 0" style="color: gray">
+					IL N'Y A PAS D'ARTICLE DANS CE MAGASIN
+				</h1>
 			</v-row>
 		</v-container>
 	</div>
@@ -27,6 +35,12 @@
 	.white--text:first-child {
 		font-weight: bold;
 		font-size: 1.3rem;
+		padding-top: 3px;
+		box-shadow: 1px 1px 3px #9e0000;
+	}
+	.white--text:nth-child(2) {
+		font-weight: bold;
+		font-size: 1.2rem;
 	}
 	.white--text:last-child {
 		text-align: right;

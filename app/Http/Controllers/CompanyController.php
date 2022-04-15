@@ -16,6 +16,11 @@ class CompanyController extends Controller
         $companies = Company::paginate(9);
         return CompanyResource::collection($companies);
     }
+    public function getAllWidthUser($id)
+    {
+        $companies = Company::where('id_user', $id)->paginate(12);
+        return CompanyResource::collection($companies);
+    }
 
     public function getBest()
     {
