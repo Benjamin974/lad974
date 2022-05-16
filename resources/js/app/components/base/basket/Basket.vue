@@ -22,7 +22,7 @@
 							<div class="cardBasket">
 								<v-card-title style="background-color: white; border-radius: 3px" class="mb-3">
 									<v-img
-										:src="product.picture"
+										:src="product.picture == null ? '/storage/images/logo_img.png' : product.picture"
 										height="100px"
 										width="100px"
 									></v-img>

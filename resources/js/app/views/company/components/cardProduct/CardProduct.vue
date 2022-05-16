@@ -9,7 +9,7 @@
 					v-bind="attrs"
 					v-on="on"
 				>
-					<v-img height="250" :src="product.picture"></v-img>
+					<v-img height="250" :src="product.picture == null ? '/storage/images/logo_img.png' : product.picture"></v-img>
 
 					<v-divider></v-divider>
 
@@ -20,9 +20,9 @@
 					</v-card-text>
 				</v-card>
 			</template>
-			<v-card class="d-flex justify-space-around dialog-product">
+			<v-card class="d-flex justify-space-around dialog-product" height="380">
 				<div class="img">
-					<v-img :src="product.picture" height="100%"></v-img>
+					<v-img :src="product.picture == null ? '/storage/images/logo_img.png' : product.picture" height="100%"></v-img>
 				</div>
 				<div class="contents">
 					<v-card-title class="text-h5 d-flex justify-space-between">

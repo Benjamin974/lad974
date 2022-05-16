@@ -30,13 +30,13 @@
 						>
 							<v-card
 								class="mb-10 card-product-stepper"
-								style="width: 250px !important"
+								style="width: 100% !important"
 							>
 								<v-list-item>
 									<v-list-item-content>
 										<v-list-item-title class="d-flex justify-center"
 											><img
-												:src="item.picture"
+												:src="item.picture == null ? '/storage/images/logo_img.png' : item.picture"
 												alt=""
 												width="100px"
 												height="100px"
