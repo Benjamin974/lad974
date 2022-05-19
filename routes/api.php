@@ -35,7 +35,7 @@ Route::prefix('product')->group(function () {
 });
 
 Route::prefix('company')->group(function () {
-    Route::get('/get', [CompanyController::class, 'getAll']);
+    // Route::get('/get', [CompanyController::class, 'getAll']);
     Route::get('/best', [CompanyController::class, 'getBest']);
     Route::get('find/user/{id}', [CompanyController::class, 'findByUser'])->where('id', '[0-9]+');
     Route::get('/find/{id}', [CompanyController::class, 'find'])->where('id', '[0-9]+');
