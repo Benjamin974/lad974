@@ -15,7 +15,8 @@
 
 			<v-stepper-items style="margin: 10vh 0 !important">
 				<v-stepper-content step="1">
-					<div style="font-weight: bold;margin-bottom: 20px; font-size: 2rem; background-color:#FF6D6D; color: white; padding: 5px; width: 180px; text-align: center">
+					<div
+						style="font-weight: bold;margin-bottom: 20px; font-size: 2rem; background-color:#FF6D6D; color: white; padding: 5px; width: 180px; text-align: center">
 						Total : {{ total }}€
 					</div>
 					<v-row>
@@ -47,7 +48,8 @@
 
 				<v-stepper-content step="2" class="mb-5">
 					<v-container>
-						<div style="font-weight: bold;margin-bottom: 20px; font-size: 2rem; background-color:#FF6D6D; color: white; padding: 5px">
+						<div
+							style="font-weight: bold;margin-bottom: 20px; font-size: 2rem; background-color:#FF6D6D; color: white; padding: 5px; width: 180px; text-align: center">
 							Total : {{ total }}€
 						</div>
 						<v-form ref="form" v-model="valid" :lazy-validation="lazy">
@@ -100,7 +102,8 @@
 					</div>
 				</v-stepper-content>
 				<v-stepper-content step="3">
-					<div style="font-weight: bold;margin-bottom: 20px; font-size: 2rem; background-color:#FF6D6D; color: white; padding: 5px">
+					<div
+						style="font-weight: bold;margin-bottom: 20px; font-size: 2rem; background-color:#FF6D6D; color: white; padding: 5px; width: 180px; text-align: center">
 						Total : {{ total }}€
 					</div>
 					<v-stripe-card v-model="source" :api-key="api_key"></v-stripe-card>
