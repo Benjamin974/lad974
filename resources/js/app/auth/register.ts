@@ -2,6 +2,8 @@ import { authenticationService } from "../_services/authenticationService";
 
 //@ts-ignore
 import _ from 'lodash'
+import { apiService } from "../_services/apiService";
+import { EventBus } from "../eventBus";
 
 export default {
 
@@ -41,7 +43,7 @@ export default {
       }
 
     },
-    password: function(val: any) {
+    password: function (val: any) {
       const self: any = this;
       val == '' ? self.erreur = '' : null;
     }
@@ -61,14 +63,13 @@ export default {
       let self: any = this;
 
       self.loading = true;
-      // authenticationService.register(self.user).then(
-      //   (user: any) => {
-      //     console.log(user);
-      //   },
-      //   (error: any) => {
-      //     self.loading = false;
-      //   }
-      // );
+
+      apiService.post('/api/register', { name: self.user.name, email: self.user.email, password: self.password, id_role: 1 }).then((response: any) => {
+        console.log(response);
+        EventBus.$emit('updateSnack', { etat: true, text: "vous êtes desormais inscrit", color: 'success' })
+        self.$router.push('/login')
+
+      })
     }
   }
 };

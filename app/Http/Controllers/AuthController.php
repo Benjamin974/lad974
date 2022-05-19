@@ -10,6 +10,25 @@ use Illuminate\Support\Facades\Log;
 
 class AuthController extends Controller
 {
+    public function register(Request $request) {
+        $validator = $request->validate([
+            'name'=>'required',
+            'email' => 'required|string|email',
+            'password' => 'required|string',
+            'id_role' => 'required'
+        ]);   
+
+        $user = new User;
+        $user->name = $validator['name'];
+        $user->email = $validator['email'];
+        $user->password = bcrypt($request->password);
+        $user->id_role = $validator['id_role'];
+        $user->banned_until = false;
+        $user->save();
+
+        return response()->json(['status' => 'success'], 200);
+    }
+    
     public function login(Request $request)
     {
         $login = $request->validate([

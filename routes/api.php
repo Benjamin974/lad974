@@ -67,4 +67,5 @@ Route::prefix('command')->group(function () {
 
 Route::post('/facture', [FacturesController::class, 'getFacture']);
 Route::post('login', [AuthController::class, 'login']);
+Route::post('register',[AuthController::class, 'register']);
 Route::middleware('auth:api')->get('logout', [AuthController::class, 'logout']);

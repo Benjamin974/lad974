@@ -9,14 +9,29 @@ export default {
     return {
       products: [],
       company: {},
-      dialog: false
+      page: 1,
+      pagination: {
+        visible: 10,
+        pageCount: 0,
+      },
+      dialog: false,
+      search: ''
+    }
+  },
+  computed: {
+    filteredList() {
+      let self: any = this;
+
+      return self.products.filter((product: any) => {
+        return product.name.toLowerCase().includes(self.search.toLowerCase())
+      })
     }
   },
   created() {
     let self: any = this;
 
     self.getCompany();
-    self.getProducts();
+    self.nextPageProducts(1);
   },
 
   methods: {
@@ -32,8 +47,22 @@ export default {
 
       apiService.get('/api/product/get/' + self.$route.params.id).then(({ data }) => {
         data.data.forEach((product: any) => {
-          self.products.push(product);
+          if (product.quantite != 0) {
+            self.products.push(product);
+          }
         });
+      })
+    },
+    nextPageProducts(page: any): void {
+      let self: any = this;
+      self.products = [];
+      apiService.get('/api/product/get/' + self.$route.params.id + '?page=' + page).then(({ data }) => {
+        data.data.forEach((product: any) => {
+          if (product.quantite != 0) {
+            self.products.push(product);
+          }
+        });
+        self.pagination.pageCount = data.meta.last_page
       })
     }
   }
