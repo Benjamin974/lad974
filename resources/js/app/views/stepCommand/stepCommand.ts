@@ -52,6 +52,7 @@ export default {
       currentUser: null,
       lazy: false,
       valid: true,
+      total: 0,
       from: null,
       rulesCP: (v: any) => {
         if (!v.trim()) return true;
@@ -79,6 +80,7 @@ export default {
     let self: any = this;
     authenticationService.currentUser.subscribe((x) => (self.currentUser = x));
     self.getBasket();
+    self.calculTotal();
 
 
   },
@@ -88,6 +90,25 @@ export default {
     self.loadIntent();
   },
   methods: {
+    calculTotal() {
+      let self: any = this;
+      let allPrices = []
+      for (const product in self.commande.commandList)  {
+        let _product: any = self.commande.commandList[product];
+        let price = _product.price * _product.quantite
+        allPrices.push(price);
+      }
+
+      const initialValue = 0;
+      const sumWithInitial = allPrices.reduce(
+        (previousValue, currentValue) => previousValue + currentValue,
+        initialValue
+      )
+      console.log(sumWithInitial);
+      self.total = sumWithInitial;
+
+      console.log(allPrices);
+    },
     loadIntent() {
       let self: any = this;
 

@@ -15,6 +15,12 @@ class ProductController extends Controller
         return ProductResource::collection($products);
     }
 
+    public function getMore($id)
+    {
+        $products = Product::where('id_company', $id)->get();
+        return ProductResource::collection($products);
+    }
+
     public function find($id)
     {
         $product = Product::find($id);

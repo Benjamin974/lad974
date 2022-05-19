@@ -29,13 +29,14 @@ Route::get('/user/setup-intent', [CommandController::class, 'getSetupIntent']);
 
 Route::prefix('product')->group(function () {
     Route::get('/get/{id}', [ProductController::class, 'getAll'])->where('id', '[0-9]+');
+    Route::get('/get-all/{id}', [ProductController::class, 'getMore'])->where('id', '[0-9]+');
     Route::get('/find/{id}', [ProductController::class, 'find'])->where('id', '[0-9]+');
     Route::post('/add-update', [ProductController::class, 'addUpdate']);
     Route::post('/delete/{id}', [ProductController::class, 'delete'])->where('id', '[0-9]+');
 });
 
 Route::prefix('company')->group(function () {
-    // Route::get('/get', [CompanyController::class, 'getAll']);
+    Route::get('/get', [CompanyController::class, 'getAll']);
     Route::get('/best', [CompanyController::class, 'getBest']);
     Route::get('find/user/{id}', [CompanyController::class, 'findByUser'])->where('id', '[0-9]+');
     Route::get('/find/{id}', [CompanyController::class, 'find'])->where('id', '[0-9]+');

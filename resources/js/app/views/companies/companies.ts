@@ -17,6 +17,7 @@ export default {
     getCompanies() {
       let self: any = this;
       apiService.get('/api/company/get').then(({ data }) => {
+        console.log(data);
         data.data.forEach((_company: any) => {
           self.companies.push(_company);
         });
